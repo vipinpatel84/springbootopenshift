@@ -15,7 +15,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot Application git CI/CD Pipeline fix commit";
+		return "Welcome to Springboot Application git CI/CD revision Pipeline fix commit";
 	}
 
 }
