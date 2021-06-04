@@ -15,7 +15,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot jenkins File added but Pipeline is not created";
+		return "Welcome to Springboot jenkins module created in Jenkins Dashboard";
 	}
 
 }
