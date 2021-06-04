@@ -15,7 +15,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot Application Test";
+		return "Welcome to Springboot Application Test CI/CD Openshift";
 	}
 
 }
