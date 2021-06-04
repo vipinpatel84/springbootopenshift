@@ -15,7 +15,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot Application git CI/CD AWS Test";
+		return "Welcome to Springboot Application";
 	}
 
 }
