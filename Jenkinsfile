@@ -1,17 +1,17 @@
 pipeline {
     agent any
-   
+    tools{
+        maven 'maven_apache'
+    }
       options {
       timeout(time: 10, unit: 'MINUTES') 
     }
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
-                maven('maven_apache'){
-                    sh 'mvn clean install'
-                }
-                echo 'Building. done'
+                echo 'Building..'           
+                 batch 'mvn clean install'
+                 echo 'Building. done'
             }
         }
         stage('Test') {
