@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo 'Building..'           
                 withMaven(){
-                   sh 'mvn clean install'
+                   sh 'mvnw clean install'
                 }
                  echo 'Building. done'
             }
@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 withMaven(){
-                   sh 'mvn test'
+                   sh 'mvnw test'
                 }
                 echo 'testing done .....'
             }
