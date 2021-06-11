@@ -25,6 +25,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                withJDK(){
+                    bat 'java -jar /target/*.jar'
+                }
             }
         }
     }
