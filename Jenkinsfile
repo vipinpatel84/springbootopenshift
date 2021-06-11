@@ -16,6 +16,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
+                withMaven(){
+                   bat 'mvn test'
+                }
+                echo 'testing done .....'
             }
         }
         stage('Deploy') {
