@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo ' Started '
                 withMaven(){
-                    bat 'mvn deploy'
+                    bat 'mvn deploy -Dmaven.test.skip=true'
                 }
                 echo ' end '
             }
