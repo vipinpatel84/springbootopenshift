@@ -2,7 +2,6 @@ pipeline {
     agent any
     environment {
     ARTIFACTORY_CREDS = credentials('ARTIFACTORY_CRED')
-        BUILD_NUMBER
         }
     stages {
         stage ('Clone') {
@@ -10,9 +9,7 @@ pipeline {
                 git branch: 'dev-v1', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
          }
-        
-        echo "$BUILD_NUMBER"
-        
+                
         stage ('Build') {
             steps {
                 rtServer (
