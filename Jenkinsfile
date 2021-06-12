@@ -36,8 +36,8 @@ pipeline {
                     tool: 'maven_apache', // Tool name from Jenkins configuration
                     pom: 'pom.xml',
                     goals: 'clean install deploy'
-                //    deployerId: "maven_apache",
-                //    resolverId: "maven_apache"
+                    deployerId: "maven_apache",
+                    resolverId: "maven_apache"
                 )
             }
         }
