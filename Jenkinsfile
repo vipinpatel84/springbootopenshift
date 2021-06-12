@@ -14,53 +14,15 @@ pipeline {
                 }
             }
         }
-        stage ('Artifactory configuration') {
-            
+         stage('Push to Artifactory') {
             steps {
-                echo 'Setup is started'
-                rtServer (
-                    id: "springbootopenshift",
-                    url: 'http://localhost:8082/artifactory',
-                    username: 'admin',
-                    password: 'Vipin@95',
-                    timeout: 300
-                )
-                echo 'Setup is done'
-
-                rtMavenDeployer (
-                    id: "springbootopenshift",
-                    serverId: "springbootopenshift",
-                    releaseRepo: 'http://localhost:8082/artifactory/springbootopenshift',
-                    snapshotRepo: 'http://localhost:8082/artifactory/springbootopenshift'
-                )
-
-                rtMavenResolver (
-                    id: "springbootopenshift",
-                    serverId: "springbootopenshift",
-                    releaseRepo: 'http://localhost:8082/artifactory/springbootopenshift',
-                    snapshotRepo: 'http://localhost:8082/artifactory/springbootopenshift'
-                )
+                echo ' Started '
+                withMaven(){
+                    bat 'mvn clean deploy'
+                }
+                echo ' end '
             }
-        }
-
-        stage ('Exec Maven') {
-            steps {
-                rtMavenRun (
-                    tool: 'maven', // Tool name from Jenkins configuration
-                    pom: 'pom.xml',
-                    goals: 'clean install',
-                    deployerId: "MAVEN_DEPLOYER",
-                    resolverId: "MAVEN_RESOLVER"
-                )
-            }
-        }
-
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "springbootopenshift"
-                )
-            }
-        }
+        }                      
+                
     }
 }
