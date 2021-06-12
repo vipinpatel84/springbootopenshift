@@ -9,7 +9,7 @@ pipeline {
                 git branch: 'dev-v1', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
          }
-        
+        echo 'BUILD_NUMBER'
         stage ('Build') {
             steps {
                 rtServer (
@@ -17,12 +17,9 @@ pipeline {
                     url: "http://localhost:8081/artifactory",
                     credentialsId: 'ARTIFACTORY_CREDS',
                 )
-                echo "password check $ARTIFACTORY_CREDS"
-                echo "password check '$ARTIFACTORY_CREDS'"
-                echo "password check 'ARTIFACTORY_CREDS'"
-                echo 'password check "$ARTIFACTORY_CREDS"'
-                echo 'password check '$ARTIFACTORY_CREDS''
-                echo 'password check 'ARTIFACTORY_CREDS''
+                
+                
+                
                 rtMavenDeployer (
                     id: "maven_apache",
                     serverId: "artifactory",
@@ -40,7 +37,7 @@ pipeline {
                 rtMavenRun (
                     tool: 'maven_apache', // Tool name from Jenkins configuration
                     pom: 'pom.xml',
-                    goals: 'clean install deploy'
+                    goals: 'clean install'
                 //    deployerId: "maven_apache",
                 //    resolverId: "maven_apache"
                 )
