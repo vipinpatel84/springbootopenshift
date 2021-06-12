@@ -20,6 +20,7 @@ pipeline {
                     timeout: 300
                 )
                 echo 'Setup is done'
+             }
             steps {
                 echo ' Started '
                 withMaven(){
