@@ -7,7 +7,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'           
-                withMaver(){
+                withMaven(){
                    bat 'mvnw clean install'
                 }
                  echo 'Building. done'
