@@ -5,7 +5,7 @@ pipeline {
             steps {
                 git branch: 'dev-v1', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
-//         }
+         }
 
 //         stage ('Artifactory configuration') {
 //             steps {
