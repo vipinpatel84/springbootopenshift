@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo ' Started '
                 withMaven(){
-                    bat 'mvn clean deploy'
+                    bat 'mvn deploy'
                 }
                 echo ' end '
             }
