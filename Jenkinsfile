@@ -12,8 +12,8 @@ pipeline {
                 rtServer (
                     id: "artifactory",
                     url: "http://localhost:8081/artifactory",
-                    username: "admin"
-                    password: "Vipin@95"
+                    username: 'admin',
+                    password: 'Vipin@95',
                 )
 
                 rtMavenDeployer (
