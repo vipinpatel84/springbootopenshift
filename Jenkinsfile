@@ -1,81 +1,55 @@
 pipeline {
-  agent any 
-  stages{
-   stage('Build') {
-       steps {
-         script {
-          dir("test")
-            {
-             bat  'touch $WORKSPACE/Artifact_$BUILD_NUMBER'
-            }
-            }
-          }
-        }
-         stage ('Upload') {
+    agent any
+    stages {
+        stage ('Clone') {
             steps {
-                rtUpload (
-                    buildName: JOB_NAME,
-                    buildNumber: BUILD_NUMBER,
-                    serverId: SERVER_ID, // Obtain an Artifactory server instance, defined in Jenkins --> Manage:
-                    spec: '''{
-                              "files": [
-                                 {
-                                  "pattern": "$WORKSPACE/Demo-Artifactory/Artifact_*",
-                                  "target": "result/",
-                                  "recursive": "false"
-                                } 
-                             ]
-                        }'''    
-                    )
+                git branch: 'master', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
         }
+
+        stage ('Artifactory configuration') {
+            steps {
+                rtServer (
+                    id: "artifactory",
+                    url: "http://localhost:8081/artifactory",
+                    username: "admin"
+                    password: "Vipin@95"
+                )
+
+                rtMavenDeployer (
+                    id: "maven_apache",
+                    serverId: "artifactory",
+                    releaseRepo: "http://localhost:8081/artifactory/springbootopenshift",
+                    snapshotRepo: "http://localhost:8081/artifactory/springbootopenshift"
+                )
+
+                rtMavenResolver (
+                    id: "maven_apache",
+                    serverId: "artifactory",
+                    releaseRepo: "http://localhost:8081/artifactory/springbootopenshift",
+                    snapshotRepo: "http://localhost:8081/artifactory/springbootopenshift"
+                )
+            }
+        }
+
+        stage ('Exec Maven') {
+            steps {
+                rtMavenRun (
+                    tool: 'maven_apache', // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: "MAVEN_DEPLOYER",
+                    resolverId: "MAVEN_RESOLVER"
+                )
+            }
+        }
+
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    buildName: JOB_NAME,
-                    buildNumber: BUILD_NUMBER,
-                    serverId: SERVER_ID
-                )
-
-                rtPublishBuildInfo (
-                    buildName: JOB_NAME,
-                    buildNumber: BUILD_NUMBER,
-                    serverId: SERVER_ID
+                    serverId: "ARTIFACTORY_SERVER"
                 )
             }
         }
-         stage ('Add interactive promotion') {
-            steps {
-                rtAddInteractivePromotion (
-                    //Mandatory parameter
-                    serverId: SERVER_ID,
-
-                    //Optional parameters
-                    targetRepo: 'result/',
-                    displayName: 'Promote me please',
-                    buildName: JOB_NAME,
-                    buildNumber: BUILD_NUMBER,
-                    comment: 'this is the promotion comment',
-                    sourceRepo: 'result/',
-                    status: 'Released',
-                    includeDependencies: true,
-                    failFast: true,
-                    copy: true
-                )
-
-                rtAddInteractivePromotion (
-                    serverId: SERVER_ID,
-                    buildName: JOB_NAME,
-                    buildNumber: BUILD_NUMBER
-                )
-            }
-         }
-         stage ('Removing files') {
-            steps {
-                bat 'rm -rf $WORKSPACE/*'
-            }
-        }
-         
-        
-  }
+    }
 }
