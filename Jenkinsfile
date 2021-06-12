@@ -13,6 +13,7 @@ pipeline {
                     bat 'mvn clean install'
                 }
             }
+        }
         stage ('Artifactory configuration') {
             
             steps {
