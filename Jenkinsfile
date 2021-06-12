@@ -7,30 +7,30 @@ pipeline {
             }
         }
 
-        stage ('Artifactory configuration') {
-            steps {
-                rtServer (
-                    id: "artifactory",
-                    url: "http://localhost:8081/artifactory",
-                    username: 'admin',
-                    password: 'Vipin@95',
-                )
+//         stage ('Artifactory configuration') {
+//             steps {
+//                 rtServer (
+//                     id: "artifactory",
+//                     url: "http://localhost:8081/artifactory",
+//                     username: 'admin',
+//                     password: 'Vipin@95',
+//                 )
 
-                rtMavenDeployer (
-                    id: "maven_apache",
-                    serverId: "artifactory",
-                    releaseRepo: 'springbootopenshift',
-                    snapshotRepo: 'springbootopenshift'
-                )
+//                 rtMavenDeployer (
+//                     id: "maven_apache",
+//                     serverId: "artifactory",
+//                     releaseRepo: 'springbootopenshift',
+//                     snapshotRepo: 'springbootopenshift'
+//                 )
 
-                rtMavenResolver (
-                    id: "maven_apache",
-                    serverId: "artifactory",
-                    releaseRepo: "springbootopenshift",
-                    snapshotRepo: "springbootopenshift"
-                )
-            }
-        }
+//                 rtMavenResolver (
+//                     id: "maven_apache",
+//                     serverId: "artifactory",
+//                     releaseRepo: "springbootopenshift",
+//                     snapshotRepo: "springbootopenshift"
+//                 )
+//             }
+//         }
 
         stage ('Build') {
             steps {
