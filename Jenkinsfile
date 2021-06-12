@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Clone') {
             steps {
-                git branch: 'master', url: "https://github.com/vipinpatel84/springbootopenshift.git"
+                git branch: 'dev-v1', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
         }
 
