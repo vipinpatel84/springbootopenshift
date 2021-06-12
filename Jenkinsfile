@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+    ARTIFACTORY_CREDS = credentials('ARTIFACTORY_CRED')
+        }
     stages {
         stage ('Clone') {
             steps {
@@ -12,7 +15,7 @@ pipeline {
                 rtServer (
                     id: "artifactory",
                     url: "http://localhost:8081/artifactory",
-                    credentialsId: 'ARTIFACTORY_CRED',
+                    credentialsId: 'ARTIFACTORY_CREDS',
                 )
 
                 rtMavenDeployer (
