@@ -17,7 +17,9 @@ pipeline {
                     url: "http://localhost:8081/artifactory",
                     credentialsId: 'ARTIFACTORY_CREDS',
                 )
-
+                echo "$ARTIFACTORY_CREDS"
+                echo "'$ARTIFACTORY_CREDS'"
+                echo "'ARTIFACTORY_CREDS'"
                 rtMavenDeployer (
                     id: "maven_apache",
                     serverId: "artifactory",
