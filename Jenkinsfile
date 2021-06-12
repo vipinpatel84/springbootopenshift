@@ -19,14 +19,14 @@ pipeline {
                 )
 
                 rtMavenDeployer (
-                    id: "deployer-unique-id",
+                    id: "MAVEN_DEPLOYER",
                     serverId: "artifactory",
                     releaseRepo: 'springbootopenshift',
                     snapshotRepo: 'springbootopenshift'
                 )
 
                 rtMavenResolver (
-                    id: "resolver-unique-id",
+                    id: "MAVEN_RESOLVER",
                     serverId: "artifactory",
                     releaseRepo: "springbootopenshift",
                     snapshotRepo: "springbootopenshift"
