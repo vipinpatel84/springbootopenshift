@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo 'Building..'           
                 withMaven(){
-                   bat 'mvnw clean install'
+                   bat 'mvnw clean verify'
                 }
                  echo 'Building. done'
             }
