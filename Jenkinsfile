@@ -16,9 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                withMaven(){
-                   sh 'mvnw test'
-                }
                 echo 'testing done .....'
             }
         }
