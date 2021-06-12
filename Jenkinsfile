@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-        stage ('Exec Maven') {
+        stage ('Build') {
             steps {
                 rtMavenRun (
                     tool: 'maven_apache', // Tool name from Jenkins configuration
@@ -44,10 +44,10 @@ pipeline {
             }
         }
 
-        stage ('Publish build info') {
+        stage ('Deploy') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
+                    serverId: "artifactory"
                 )
             }
         }
