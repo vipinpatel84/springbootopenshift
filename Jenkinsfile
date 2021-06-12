@@ -20,8 +20,6 @@ pipeline {
                     timeout: 300
                 )
                 echo 'Setup is done'
-             }
-            steps {
                 echo ' Started '
                 withMaven(){
                     bat 'mvn deploy -Dmaven.test.skip=true'
