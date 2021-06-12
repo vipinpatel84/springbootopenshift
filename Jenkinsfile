@@ -8,13 +8,14 @@ pipeline {
             steps {
                 echo 'Building..'           
                 withMaven(){
-                   bat 'mvnw clean verify'
+                   bat 'mvn -B -DskipTests clean package'
                 }
                  echo 'Building. done'
             }
         }
         stage('Test') {
             steps {
+                
                 echo 'Testing..'
                 echo 'testing done .....'
             }
