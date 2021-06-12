@@ -7,18 +7,18 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'           
-               
-                   sh 'mvnw clean install'
-                
+                withMaver(){
+                   bat 'mvnw clean install'
+                }
                  echo 'Building. done'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                
+                withMaven(){
                    sh 'mvnw test'
-                
+                }
                 echo 'testing done .....'
             }
         }
