@@ -26,8 +26,8 @@ pipeline {
                 rtMavenResolver (
                     id: "maven_apache",
                     serverId: "artifactory",
-                    releaseRepo: "http://localhost:8081/artifactory/springbootopenshift",
-                    snapshotRepo: "http://localhost:8081/artifactory/springbootopenshift"
+                    releaseRepo: "springbootopenshift",
+                    snapshotRepo: "springbootopenshift"
                 )
             }
         }
