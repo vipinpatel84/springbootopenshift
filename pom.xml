@@ -57,5 +57,22 @@
         <url>http://localhost:8081/artifactory/springbootopenshift</url>
     </snapshotRepository>
 </distributionManagement>
+<profiles>
+    <profile>
+       <id>MavenRepository</id>
+           <repositories>
+            <repository>
+                <id>central</id>
+                <url>https://repo1.maven.org/maven2</url>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+                <releases>
+                    <enabled>true</enabled>
+                </releases>
+            </repository>
+        </repositories>
+    </profile>
+</profiles>
 
 </project>
