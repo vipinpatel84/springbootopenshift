@@ -6,7 +6,7 @@ pipeline {
          script {
           dir("test")
             {
-             sh  'touch $WORKSPACE/Artifact_$BUILD_NUMBER'
+             bat  'touch $WORKSPACE/Artifact_$BUILD_NUMBER'
             }
             }
           }
@@ -72,7 +72,7 @@ pipeline {
          }
          stage ('Removing files') {
             steps {
-                sh 'rm -rf $WORKSPACE/*'
+                bat 'rm -rf $WORKSPACE/*'
             }
         }
          
