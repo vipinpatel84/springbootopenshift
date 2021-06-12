@@ -6,8 +6,15 @@ pipeline {
                 git branch: 'dev-v1', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
         }
-
+        stage('Build') {
+            steps {
+                echo 'Build Started'
+                withMaven(){
+                    bat 'mvn clean install'
+                }
+            }
         stage ('Artifactory configuration') {
+            
             steps {
                 echo 'Setup is started'
                 rtServer (
