@@ -9,7 +9,7 @@ pipeline {
                 git branch: 'dev-v1', url: "https://github.com/vipinpatel84/springbootopenshift.git"
             }
          }
-        echo 'BUILD_NUMBER'
+        
         stage ('Build') {
             steps {
                 rtServer (
