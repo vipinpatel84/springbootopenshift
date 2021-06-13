@@ -28,8 +28,8 @@ pipeline {
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "artifactory",
-                    releaseRepo: "springbootopenshift",
-                    snapshotRepo: "springbootopenshift"
+                    releaseRepo: "springbootopenshfit-libs-release-local",
+                    snapshotRepo: "springbootopenshfit-libs-snapshot-local"
                 )
                 
                 rtMavenRun (
