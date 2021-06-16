@@ -19,7 +19,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot jenkins OpenShift checking deployment version 1" + env;
+		return "Welcome to Springboot jenkins OpenShift checking deployment version 2" + env;
 	}
 
 }
