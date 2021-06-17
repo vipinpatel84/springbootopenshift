@@ -1,0 +1,42 @@
+## Adding liveness and Readiness probe in kubernetes/OC containers
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deployment
+  labels:
+    app: springboot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+  template:
+    metadata:
+      labels:
+        app: springboot
+    spec:
+      containers:
+      - name: springbootdocker
+        image: vipinpatel/springbootgit:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: env_name
+          value: local
+        resources:
+          limits:
+            cpu: "800m"
+            memory: "250Mi"
+          requests:
+            cpu: "150m"
+            memory: "250Mi"
+        readinessProbe:
+          httpGet:   
+            path: /actuator/health/readiness
+            port: 8080  
+        livenessProbe: 
+          httpGet:   
+            path: /actuator/health/liveness
+            port: 8080
+          initialDelaySeconds: 30   
+            
