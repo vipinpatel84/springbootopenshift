@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  name: springboot-docker
+spec:
+  replicas: 1 ## replica will be 1
+  selector:
+    name: springboot-docker 
+  template: ## replica controller will be named as springboot-docker
+    metadata:
+      labels:
+        name: "springboot-docker"
+  triggers:
+  - type: ConfigChange 
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - springboot-docker
+      from:
+        kind: ImageStreamTag
+        name: vipinpatel/springbootgit:latest
+    type: ImageChange  #  An image change trigger causes a new deployment to be created each time a new version of the backing image is available in the named image stream.
+  strategy:
+    type: Rolling      # Strategy of deployment by default its rolling

@@ -1,4 +1,4 @@
-## kubernetes/Openshift Image deployment form Docker Hub
+## Adding Env variables in containers
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,3 +20,6 @@ spec:
         image: vipinpatel/springbootgit:latest
         ports:
         - containerPort: 80
+        env:
+        - name: env_name
+          value: local
