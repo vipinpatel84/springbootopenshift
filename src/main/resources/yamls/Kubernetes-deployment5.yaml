@@ -25,26 +25,25 @@ spec:
         ports:
         - containerPort: 80
         env:
-#        - name: env_name1
-#          value: local-dev
-#        envFrom: 
-#        - configMapRef: 
-#            name: springboot-configmap
-        - name : env_name
-          valueFrom: 
-            configMapKeyRef: 
-              name: springboot-configmap
-              key: env_name
-        - name : DBUSER
-          valueFrom: 
-            configMapKeyRef: 
-              name: springboot-configmap
-              key: dbuser
-        - name : DBPASSWORD
-          valueFrom: 
-            configMapKeyRef: 
-              name: springboot-configmap
-              key: dbpassword             
+        - name: env_name1
+          value: local-dev
+          envFrom: 
+            - configMapRef: springboot-configmap
+#        - name : env_name
+#          valueFrom: 
+#            configMapKeyRef: 
+#              name: springboot-configmap
+#              key: env_name
+#        - name : DBUSER
+#          valueFrom: 
+#            configMapKeyRef: 
+#              name: springboot-configmap
+#              key: dbuser
+#        - name : DBPASSWORD
+#          valueFrom: 
+#            configMapKeyRef: 
+#              name: springboot-configmap
+#              key: dbpassword             
         resources:
           limits:
             cpu: "800m"

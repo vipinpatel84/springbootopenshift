@@ -1,0 +1,77 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftWebConsole
+  resourceVersion: '173350'
+  name: springbootgitdocker
+spec:
+  strategy:
+    type: Rolling
+  triggers:
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - springbootgitdocker
+        from:
+          kind: ImageStreamTag
+          namespace: tribe-devops
+          name: 'springbootgitdocker:latest'
+        lastTriggeredImage: >-
+          image-registry.openshift-image-registry.svc:5000/tribe-devops/springbootgitdocker@sha256:f96560a499781b838d5d32aa6732f76fa1f6465db5c1bdd326d9147069bab076
+    - type: ConfigChange
+  replicas: 1
+  revisionHistoryLimit: 10
+  test: false
+  selector:
+    app: springbootgitdocker
+    deploymentconfig: springbootgitdocker
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springbootgitdocker
+        deploymentconfig: springbootgitdocker
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+    spec:
+      containers:
+        - name: springbootgitdocker
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/tribe-devops/springbootgitdocker@sha256:f96560a499781b838d5d32aa6732f76fa1f6465db5c1bdd326d9147069bab076
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+status:
+  latestVersion: 1
+  observedGeneration: 2
+  replicas: 1
+  updatedReplicas: 1
+  availableReplicas: 0
+  unavailableReplicas: 1
+  details:
+    message: config change
+    causes:
+      - type: ConfigChange
+  conditions:
+    - type: Available
+      status: 'False'
+      lastUpdateTime: '2021-06-16T19:47:27Z'
+      lastTransitionTime: '2021-06-16T19:47:27Z'
+      message: Deployment config does not have minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2021-06-16T19:47:32Z'
+      lastTransitionTime: '2021-06-16T19:47:32Z'
+      reason: ReplicationControllerUpdated
+      message: replication controller "springbootgitdocker-1" is progressing
