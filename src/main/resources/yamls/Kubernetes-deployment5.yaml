@@ -1,0 +1,64 @@
+## Adding ConfigMap but getting deployment Failed need to check further
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deployment
+  labels:
+    app: springboot
+    app.kubernetes.io/part-of: springboot
+    app.openshift.io/runtime: java
+    app.kubernetes.io/name: java
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+  template:
+    metadata:
+      labels:
+        app: springboot
+    spec:
+      containers:
+      - name: springbootdocker
+        image: vipinpatel/springbootgit:latest
+        command: [ "/bin/sh", "-c", "env" ]
+        ports:
+        - containerPort: 80
+        env:
+#        - name: env_name1
+#          value: local-dev
+#        envFrom: 
+#        - configMapRef: 
+#            name: springboot-configmap
+        - name : env_name
+          valueFrom: 
+            configMapKeyRef: 
+              name: springboot-configmap
+              key: env_name
+        - name : DBUSER
+          valueFrom: 
+            configMapKeyRef: 
+              name: springboot-configmap
+              key: dbuser
+        - name : DBPASSWORD
+          valueFrom: 
+            configMapKeyRef: 
+              name: springboot-configmap
+              key: dbpassword             
+        resources:
+          limits:
+            cpu: "800m"
+            memory: "250Mi"
+          requests:
+            cpu: "150m"
+            memory: "250Mi"
+        readinessProbe:
+          httpGet:   
+            path: /actuator/health/readiness
+            port: 8080  
+        livenessProbe: 
+          httpGet:   
+            path: /actuator/health/liveness
+            port: 8080
+          initialDelaySeconds: 30   
+            
