@@ -1,10 +1,13 @@
-## Adding liveness and Readiness probe in kubernetes/OC containers
+## Adding liveness and Readiness probe in kubernetes/OC containers labels
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: springboot-deployment
   labels:
     app: springboot
+    app.kubernetes.io/part-of: springboot
+    app.openshift.io/runtime: java
+    app.kubernetes.io/name: java
 spec:
   replicas: 1
   selector:
