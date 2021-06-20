@@ -28,21 +28,9 @@ spec:
         env:
         - name: env_name
           value: local
-        volumeMounts:
-        - name: secert-tribe-devops
-          mountPath: /secrets  ## path where it will mount in container
-          readOnly: true
-      volumes:
-      - name: secert-tribe-devops
-        secret: 
-         # Name of the Secret
-          secretName: tribe-devops-secret
         restartPolicy: Never
         ports:
         - containerPort: 80
-        env:
-        - name: env_name1
-          value: local-dev
         resources:
           limits:
             cpu: "500m"
@@ -59,4 +47,12 @@ spec:
             path: /actuator/health/liveness
             port: 8080
           initialDelaySeconds: 30   
-            
+        volumeMounts:
+        - name: secert-tribe-devops
+          mountPath: /secrets  ## path where it will mount in container
+          readOnly: true
+      volumes:
+      - name: secert-tribe-devops
+        secret: 
+         # Name of the Secret
+          secretName: tribe-devops-secret    
