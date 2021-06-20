@@ -8,7 +8,7 @@ metadata:
   labels:
     app: springboot
     app.kubernetes.io/part-of: springboot
-    app.openshift.io/runtime: java
+    app.openshift.io/runtime: spring-boot
     app.kubernetes.io/name: java
 spec:
   replicas: 1
@@ -67,5 +67,5 @@ spec:
       - name: secert-tribe-devops
         secret: 
         # Name of the Secret
-          secretName: tribe-devops-secret1   
+          secretName: tribe-devops-secret   
         
