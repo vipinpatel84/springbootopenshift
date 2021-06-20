@@ -27,8 +27,8 @@ spec:
         env:
         - name: env_name1
           value: local-dev
-          envFrom: 
-            - configMapRef: env-config
+#        envFrom: 
+#          - configMapRef: env-config
         - name : env_name
           valueFrom: 
             configMapKeyRef: 
