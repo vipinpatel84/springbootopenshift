@@ -28,22 +28,22 @@ spec:
         - name: env_name1
           value: local-dev
           envFrom: 
-            - configMapRef: springboot-configmap
-#        - name : env_name
-#          valueFrom: 
-#            configMapKeyRef: 
-#              name: springboot-configmap
-#              key: env_name
-#        - name : DBUSER
-#          valueFrom: 
-#            configMapKeyRef: 
-#              name: springboot-configmap
-#              key: dbuser
-#        - name : DBPASSWORD
-#          valueFrom: 
-#            configMapKeyRef: 
-#              name: springboot-configmap
-#              key: dbpassword             
+            - configMapRef: env-config
+        - name : env_name
+          valueFrom: 
+            configMapKeyRef: 
+              name: env-config
+              key: env_name
+        - name : DBUSER
+          valueFrom: 
+            configMapKeyRef: 
+              name: env-config
+              key: dbuser
+        - name : DBPASSWORD
+          valueFrom: 
+            configMapKeyRef: 
+              name: env-config
+              key: dbpassword             
         resources:
           limits:
             cpu: "800m"
