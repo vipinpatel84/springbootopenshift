@@ -21,7 +21,10 @@ spec:
       containers:
       - name: springbootdocker
         image: vipinpatel/springbootgit:latest
-        command: [ "/bin/sh", "-c", "env" ]
+        args:
+          - /bin/sh
+          - -c 
+          - "echo $env_name" 
         ports:
         - containerPort: 80
         env:
