@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoApplication {
 
-	@Value("env_name")
+	@Value("env")
 	private String env;
 	
 	public static void main(String[] args) {
