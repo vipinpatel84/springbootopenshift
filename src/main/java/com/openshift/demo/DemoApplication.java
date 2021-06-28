@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoApplication {
 
-	@Value("env_name")
+	@Value("env.name")
 	private String env;
 	
 	public static void main(String[] args) {
@@ -19,7 +19,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot jenkins OpenShift checking deployment version " + env;
+		return "Welcome to Springboot";
 	}
 
 }
