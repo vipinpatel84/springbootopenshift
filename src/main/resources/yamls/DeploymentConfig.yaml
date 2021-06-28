@@ -8,12 +8,15 @@ metadata:
 spec:
   replicas: 1
   selector:
-    deploymentconfig: springbootdc
+    app: springbootdc
   template:
     metadata:
       labels:
-        deploymentconfig: springbootdc
+        app: springbootdc
     spec:
       containers:
         - name: springbootgit
-          image: vipinpatel/springbootgit:latest
+          image: vipinpatel/openshiftdemo:latest
+          env:
+        - name: env_name
+          value: local
