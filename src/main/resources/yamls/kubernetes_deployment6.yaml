@@ -2,6 +2,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    imageregistry: "https://hub.docker.com/"
   name: springboot-deployment
   labels:
     app: springboot

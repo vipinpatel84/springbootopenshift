@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: env-config
+  namespace: tribe-devops  #Change nameSpace to vipin-patel-dev
+  selfLink: /api/v1/namespaces/tribe-devops/configmaps/env-config
+  uid: 5dbb4c4b-4a22-4c06-8218-f0bb35905487
+  resourceVersion: '288006'
+  creationTimestamp: '2021-06-19T08:10:57Z'
+  managedFields:
+    - manager: kubectl-create
+      operation: Update
+      apiVersion: v1
+      time: '2021-06-19T08:10:57Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:data':
+          .: {}
+          'f:dbpassword': {}
+          'f:dbuser': {}
+          'f:env_name': {}
+data:
+  dbpassword: password
+  dbuser: local
+  env_name: local

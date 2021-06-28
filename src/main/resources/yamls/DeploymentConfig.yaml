@@ -1,0 +1,19 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: springbootdc
+  namespace: tribe-devops
+  labels:
+    app: springbootgit
+spec:
+  replicas: 1
+  selector:
+    deploymentconfig: springbootdc
+  template:
+    metadata:
+      labels:
+        deploymentconfig: springbootdc
+    spec:
+      containers:
+        - name: springbootgit
+          image: vipinpatel/springbootgit:latest
