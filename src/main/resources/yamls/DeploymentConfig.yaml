@@ -18,5 +18,5 @@ spec:
         - name: springbootgit
           image: vipinpatel/openshiftdemo:latest
           env:
-        - name: env_name
-          value: local
+          - name: env_name
+            value: local
