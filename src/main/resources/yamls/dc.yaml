@@ -1,0 +1,22 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: springbootdc
+  namespace: vipin-patel-dev
+  labels:
+    app: springbootgit
+spec:
+  replicas: 1
+  selector:
+    app: springbootdc
+  template:
+    metadata:
+      labels:
+        app: springbootdc
+    spec:
+      containers:
+        - name: springbootgit
+          image: vipinpatel/openshiftdemo:latest
+          env:
+          - name: env_name
+            value: local
