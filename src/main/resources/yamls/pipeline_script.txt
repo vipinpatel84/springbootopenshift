@@ -1,0 +1,32 @@
+oc new-app jenkins-persistent --param MEMORY_LIMIT=2Gi --param DISABLE_ADMINISTRATIVE_MONITORS=true --param ENABLE_OAUTH=true --as-deployment-config=true
+oc new-app java~https://github.com/vipinpatel84/springbootopenshift.git --as-deployment-config=true --name springbootgit
+
+oc set triggers dc springbootgit --manual
+
+node {
+  stage('Build Tasks') {
+    openshift.withCluster() {
+      openshift.withProject("tribe-devops") {
+        openshift.selector("bc", "springbootgit").startBuild("--wait=true")
+      }
+    }
+  }
+  stage('Tag Image') {
+    openshift.withCluster() {
+      openshift.withProject("tribe-devops") {
+        openshift.tag("springbootgit:latest", "springbootgit:${BUILD_NUMBER}")
+      }
+    }
+  }
+  stage('Deploy new image') {
+    openshift.withCluster() {
+      openshift.withProject("tribe-devops") {
+        openshift.selector("dc", "springbootgit").rollout().latest();
+      }
+    }
+  }
+}
+
+
+
+oc policy add-role-to-user edit system:serviceaccount:${GUID}-cicd:jenkins -n ${GUID}-tasks
