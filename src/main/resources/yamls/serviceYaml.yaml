@@ -1,0 +1,12 @@
+#Basic Service of Kubernetes
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+spec:
+  selector:
+    app: springbootdc
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
