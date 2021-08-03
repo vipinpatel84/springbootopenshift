@@ -19,7 +19,7 @@ public class DemoApplication {
 	
 	@GetMapping("/")
 	public String getHelloWorld() {
-		return "Welcome to Springboot v3";
+		return "Welcome to Springboot v4";
 	}
 
 }
